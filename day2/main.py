@@ -8,14 +8,14 @@
 # boolean
 
 # get the single char of the string from position 1
-start = "hello"[1]
+# start = "hello"[1]
 # print(start)
 
 # get the last index of the string.
 # print('hello'[-1])
 
 # if we don't know what is the length of the string.
-s = 'hello'
+# s = 'hello'
 # print(s[len(s) - 1])
 
 # Iteger
@@ -47,7 +47,7 @@ s = 'hello'
 # num_char = len(input('What is your name\n'))
 # print('your name has ' + str(num_char) + ' char')
 
-a = str(10)
+# a = str(10)
 # print(type(a))
 
 # -----------------------------------------
@@ -130,3 +130,51 @@ a = str(10)
 # bmi = int(weight) / float(height) ** 2
 # bmi_int = int(bmi)
 # print(bmi_int)
+
+# height = float(input('Enter your height in m: \n'))
+# weight = float(input('Enter your wight in kg: \n'))
+
+# bmi = int(weight / height ** 2)
+# print(bmi)
+
+# print(float(3 / 2))
+# print(int(3 / 2))
+# print(round(3 / 2))
+# print(8 // 3)
+
+# score = 0
+# print(type(score))
+# print('your score is ' + str(score))
+
+# score = 0
+# isTrue = True
+# heigh = 0.1
+# print(f"hear is the numbers {score} {isTrue} {heigh}")
+
+# -----
+# age = input('What is your age? ')
+# age_as_int = int(age)
+# remaning_years = 90 - age_as_int
+# days_remaning = remaning_years * 365
+# week_remaning = remaning_years * 52
+# months_remaning = remaning_years * 12
+# print(
+#     f"you have almost {remaning_years} years, {days_remaning} days, {week_remaning} weeks or {months_remaning} months left")
+
+# print(6 + 4 / 2 - (1 * 2))
+# a = int("5") / int(2.7)
+# print(a)
+
+# ------
+# print('Welcome the tip calculator')
+# bill = float(input('What was the total bill ? \n$'))
+# tip = int(input('How much tip would you like to give? 10, 12 or 15 ? \n$'))
+# people = int(input('How many pepole to spilt the bill? \n'))
+
+# tip_as_persent = tip / 100
+# total_tip_amout = bill * tip_as_persent
+# total_bill = total_tip_amout + bill
+# bill_each_person = total_bill / people
+# final_amount = round(bill_each_person, 2)
+
+# print(f"Each person shoud pay ${final_amount}")
