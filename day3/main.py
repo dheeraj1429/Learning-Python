@@ -129,5 +129,121 @@ None # repersents the absence of the value.
 # current_year = year - int(birthday_year)
 # print(f'hww you are {current_year} years old')
 
-items = [1,2,'some other data', 'new item']
-print(items[3])
+# items = [1,2,3,4]
+# print(items[3])
+
+# adding
+# new_list = items.append(100)
+# new_list = items
+# new_list.insert(2, 100)
+# print(new_list)
+# item_index = items.index(2)
+# items.insert(item_index, 2000)
+# print(items)
+# items.extend([2000])
+# print(items)
+
+# removing
+# items.pop()
+# items.pop(0) # return the removed items
+# print(items)
+# items.remove(2) # does no return anything
+# print(items)
+# items.clear() # clear remove all the items from the list.
+# print(items) 
+
+# items index     value, start, end
+# print(items.index(2, 0, 2))
+
+# to check the element in the list.
+# if(2 in items):
+#     items.remove(2)
+# print(items)
+
+# to check the how many items elements in the list
+# print(items.count(2))
+
+# items = ["a", "b", "c", "x", "d", "e", "f"]
+# items.sort()
+# print(items)
+# print(sorted(items))
+# print(items)
+# items.sort()
+# print(items)
+# new_items = items[:]
+# print(new_items)
+# new_items.reverse()
+# print(new_items)
+# new_list = items[::-1]
+# print(new_list)
+
+# items = range(0, 100)
+# print(list(items))
+
+# new_sentence = ' '.join(['hi', 'my', 'name', 'is', 'demo'])
+# print(new_sentence)
+
+# list unpacking
+# a,b,c, *others, d = [1,2,3,4,5,6,7,8]
+# print(a)
+# print(b)
+# print(c)
+# print(others)
+# print(d)
+
+
+# Distionary
+distionary = {
+    "data": [1,2,3,4],
+    "a": 10
+}
+
+
+# print(distionary["data"])
+# if distionary.get('a'):
+#     print(distionary.get('a'))
+# if "data" in distionary:
+#     print(distionary['data'])
+        
+# user_2 = dict(name="dheeraj", age=30, email="dheeraj@gmail.com")
+# print(user_2)
+
+# print("data" in distionary)
+
+# print('data' in distionary.keys())
+# print(10 in distionary.values())
+
+# print(distionary.items())
+
+# distionary.clear()
+# print(distionary)
+
+# distionary.pop('a')
+# print(distionary)
+# distionary.popitem()
+# print(distionary)
+
+# distionary.update({'a': 2000})
+# print(distionary)
+# distionary['a'] = 23000
+# print(distionary)
+
+# my_tuple = (1,2,3,4,5)
+# print(my_tuple)
+# my_tuple[1] = 1
+# print(2 in my_tuple)
+
+# my_tuple = {
+#     (1,2,3): 'sone new data'
+# }
+# print(my_tuple[(1,2,3)])
+
+my_tuple = (1,2,3,4,5)
+# new_tuple = my_tuple[::2]
+# print(new_tuple)
+# x = my_tuple[1]
+# y = my_tuple[2]
+# x,y, *others = my_tuple
+# print(x, y, others)
+# print(my_tuple.count(2))
+# print(my_tuple.index(5))
