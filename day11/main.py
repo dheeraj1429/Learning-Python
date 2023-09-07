@@ -1,5 +1,7 @@
 import sys
 import math
+import random
+from functools import reduce
 
 # first = sys.argv[1]
 # second = sys.argv[2]
@@ -109,3 +111,178 @@ import math
 #             return True
 #     else:
 #         return False
+
+# def add_function():
+#     print('Adding')
+
+
+# symbol_dict = {
+#     "+": add_function
+# }
+
+# selected_symbol = "+"
+
+# calculate_function = symbol_dict[selected_symbol]
+
+# calculate_function()
+# def genrate_two_random_numbers():
+#     first = math.floor(random.random() * 10)
+#     second = math.floor(random.random() * 10)
+
+#     return [first, second]
+
+
+# def sum(a, b):
+#     return a + b
+
+
+# def black_jack():
+#     my_cards = []
+#     computer_cards = []
+
+#     # genrate random number
+#     my_random_numbers = genrate_two_random_numbers()
+#     computer_random_numbers = genrate_two_random_numbers()
+#     my_cards = my_random_numbers
+#     computer_cards = computer_random_numbers
+
+#     my_number_sum = reduce(sum, my_cards)
+#     computer_number_sum = reduce(sum, computer_cards)
+
+#     print(f'You card numbers: {my_cards}')
+#     print(f'Computer card numbers: {computer_cards}')
+
+#     if (my_number_sum > computer_number_sum):
+#         print("You win")
+#     else:
+#         print("Computer wins")
+
+
+# black_jack()
+
+# global scope
+# is_valid = True
+
+# if 2 < 3:
+#     new_var = 'this is the new variable'
+#     print(is_valid)
+
+# print(new_var)
+
+# function scope
+# global_variable = 20
+
+
+# def some_function():
+# function scope
+#     print(global_variable)
+#     new_var = 'this is the new variable'
+
+
+# some_function()
+# print(new_var)
+
+
+# modify global variable
+# some_global_variable = 20
+
+
+# def some_function():
+#     global some_global_variable
+#     some_global_variable = 30
+#     print(some_global_variable)
+
+
+# some_function()
+# print(some_global_variable)
+
+# lifes = 5
+# is_playing = False
+
+
+# def guess_number():
+#     hidden_number = math.floor(random.random() * 100)
+#     return hidden_number
+
+
+# hidden_number = guess_number()
+
+
+# def check_my_guessed_number():
+#     global is_playing
+#     global lifes
+
+#     my_number = int(input("Guessing number "))
+
+#     if (lifes <= 1):
+#         is_playing = True
+#         print(
+#             f"guessing number is {hidden_number}, You lose, you dom ass hole!")
+
+#     if (my_number == hidden_number):
+#         print('Hooo your guessed number is correct')
+#         is_playing = True
+#     elif (my_number < hidden_number):
+#         lifes -= 1
+#         print(
+#             f"Your guessed number is too low try again, you have only {lifes} lifes left")
+#     elif (my_number < hidden_number):
+#         lifes -= 1
+#         print(
+#             f"Your guessed number is too high try again, you have only {lifes} lifes left")
+
+
+# while not is_playing:
+#     check_my_guessed_number()
+
+
+# guess_number()
+
+
+# demo_data = [
+#     {"name": "aman", "age": 20},
+#     {"name": "Dheeraj", "age": 23},
+#     {"name": "Roshan", "age": 19},
+# ]
+# index_count = 0
+# score = 0
+# game_play = False
+
+
+# def guess_pro():
+#     global index_count, score, game_play
+#     next_count = index_count + 1
+
+#     print(index_count)
+
+#     check_from = demo_data[index_count]
+#     check_to = demo_data[next_count]
+
+#     print(f"is {check_from['name']} age is grater then {check_to['name']} age")
+#     value = input("Please chose higher and lower ").lower()
+
+#     if (value == 'higher'):
+#         if (check_from["age"] > check_to['age']):
+#             score += 1
+#             index_count += 1
+#             print('You are right')
+#         else:
+#             game_play = True
+#             print("You are worng")
+#     elif (value == "lower"):
+#         if (check_from["age"] < check_to["age"]):
+#             score += 1
+#             index_count += 1
+#             print('You are right')
+#         else:
+#             game_play = True
+#             print("You are worng")
+#     else:
+#         print('You are wrong')
+#         game_play = True
+
+#     print(value)
+
+
+# while not game_play:
+#     guess_pro()
