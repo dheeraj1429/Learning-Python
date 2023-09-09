@@ -1,3 +1,6 @@
+
+# import random
+
 # class Restaurant:
 #     _create_new_coffee = False
 #     _ingredient = {
@@ -71,3 +74,87 @@
 
 # print(new_restorent._products)
 # new_restorent.buy_coffee()
+
+# t = turtle.Turtle('turtle')
+# t.shape("arrow")
+
+# for _ in range(4):
+#     t.forward(100)
+#     t.right(90)
+
+# turtle.done()
+
+
+# t = turtle.Turtle('turtle')
+
+# t.width(1)
+
+
+# def draw_shape(num_slide):
+#     angle = 360 / num_slide
+#     t.color("red")
+#     for _ in range(num_slide):
+#         t.forward(100)
+#         t.right(angle)
+
+
+# for item in range(3, 11):
+#     draw_shape(item)
+
+
+# turtle.done()
+
+
+# def draw_shape(num_slide):
+#     angle = random.random() * 100
+#     t.color("red")
+#     for _ in range(num_slide):
+#         t.forward(20)
+#         t.right(angle)
+
+
+# for item in range(100):
+#     draw_shape(item)
+
+
+# turtle.done()
+
+
+# the tuple is a immutable list
+# my_tuple = (1, 2, 3)
+# my_tuple[1] = 10
+
+# now we can change the values of the list.
+# my_list = list(my_tuple)
+# my_list[0] = 10
+# print(my_list)
+
+# we can change the values from the list.
+# my_list = [1, 2, 3]
+# my_list[1] = 10
+# print(my_list)
+
+
+# def random_color():
+#     r = random.randint(0, 255)
+#     g = random.randint(0, 255)
+#     b = random.randint(0, 255)
+#     color = (r, g, b)
+#     return color
+
+
+# t.width(1)
+# t.speed('fastest')
+
+
+# def draw_shape():
+#     current_heading = t.heading()
+#     t.circle(100)
+#     t.setheading(current_heading - 10)
+#     t.circle(100)
+
+
+# for _ in range(int(360 / 5)):
+#     draw_shape()
+
+# turtle.done()
