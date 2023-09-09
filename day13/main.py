@@ -1,3 +1,8 @@
+# from turtle import Turtle, Screen
+# import time
+# from snake import Snake
+# from food import Food
+# from score import Score
 
 # import random
 
@@ -158,3 +163,142 @@
 #     draw_shape()
 
 # turtle.done()
+
+
+# snake = Turtle()
+# screen = Screen()
+
+# screen.setup(width=600, height=600)
+# screen.title("My snake game with python")
+
+
+# def move_right():
+#     snake.right(10)
+
+
+# def move_left():
+#     snake.left(10)
+
+
+# def move_forward():
+#     snake.forward(10)
+
+
+# def move_backward():
+#     snake.backward(10)
+
+
+# def clear():
+#     snake.clear()
+#     snake.penup()
+#     snake.home()
+#     snake.pendown()
+
+
+# screen.listen()
+# screen.onkey(key='w', fun=move_forward)
+# screen.onkey(key="a", fun=move_left)
+# screen.onkey(key="d", fun=move_right)
+# screen.onkey(key='s', fun=move_backward)
+# screen.onkey(key="space", fun=clear)
+
+# screen.exitonclick()
+
+# screen = Screen()
+
+# screen.setup(width=500, height=400)
+# screen.title("Tummy race")
+# colors = ["red", "green", "blue", "yellow", "black", "purple"]
+# y_position = [-70, -40, -10, 20, 50, 80]
+# is_race_on = False
+# all_turtle = []
+# winner_turtle = ''
+
+# my_player = screen.textinput(
+#     title="Place your bet", prompt="Which turtle will win the race? Enter a color: ")
+
+# for turtle_index in range(0, 6):
+#     new_turtle = Turtle()
+#     new_turtle.penup()
+#     new_turtle.shape('turtle')
+#     new_turtle.goto(x=-230, y=y_position[turtle_index])
+#     new_turtle.color(colors[turtle_index])
+#     all_turtle.append(new_turtle)
+
+# if my_player:
+#     is_race_on = True
+
+# while is_race_on:
+#     for turtle in all_turtle:
+#         turtle_speed = int(random.randint(0, 18))
+#         turtle.forward(turtle_speed)
+#         x_position = turtle.pos()[0]
+#         if (x_position >= 230):
+#             winner_turtle = turtle.color()[0]
+#             is_race_on = False
+
+# if (winner_turtle == my_player):
+#     print("Hooowooo you win!")
+# else:
+#     print(f"You lose, Winner turtle: {winner_turtle}")
+
+# screen.exitonclick()
+
+
+# --------------------------------
+# screen = Screen()
+# screen.setup(width=600, height=600)
+# game_on = True
+# screen.tracer(0)
+
+# snake = Snake()
+# food = Food()
+# score = Score()
+# screen.title("My snake game")
+
+
+# snake.create_snake()
+
+
+# screen.listen()
+# screen.onkey(key='w', fun=snake.up)
+# screen.onkey(key='s', fun=snake.down)
+# screen.onkey(key='d', fun=snake.left)
+# screen.onkey(key='a', fun=snake.right)
+
+
+# while game_on:
+#     screen.update()
+#     time.sleep(.1)
+
+#     snake.move()
+
+#     if (snake.get_head().distance(food) < 15):
+#         food.refresh()
+#         score.update_score()
+#         snake.extend()
+
+#     if (snake.get_head().xcor() > 280 or snake.get_head().xcor() < -280 or
+#             snake.get_head().ycor() > 280 or snake.get_head().ycor() < -280):
+#         game_on = False
+#         score.game_over()
+
+
+# screen.exitonclick()
+
+# ----------------------------------------------------------------
+# class Animal():
+#     def __init__(self):
+#         self.num_eyes = 2
+
+#     def breath(self):
+#         print("Inhal, exhale.")
+
+
+# class Fish(Animal):
+#     def __init__(self):
+#         super().__init__()
+
+
+# fish = Fish()
+# print(fish.breath())
