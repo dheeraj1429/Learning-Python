@@ -18,42 +18,30 @@ class StaticTile(Tile):
         self.image = surface
 
 
-class Crate(StaticTile):
-    def __init__(self, tile_size, x, y):
-        super().__init__(tile_size, x, y, pygame.image.load(
-            '../public/graphics/terrain/crate.png').convert_alpha())
-        offset_y = y + tile_size
-        self.rect = self.image.get_rect(bottomleft=(x, offset_y))
-
-
-class AnimatedTile(Tile):
+class Animation(Tile):
     def __init__(self, tile_size, x, y, path):
         super().__init__(tile_size, x, y)
-        self.frames = import_folder(path)
         self.frame_index = 0
-        self.image = self.frames[self.frame_index]
+        self.image_frames = import_folder(path)
 
-    def animate(self):
-        self.frame_index += 0.15
-        if self.frame_index >= len(self.frames):
-            self.frame_index = 0
-        self.image = self.frames[int(self.frame_index)]
-
+    
     def update(self, shift):
-        self.animate()
         self.rect.x += shift
+        self.frame_index += 0.15
+        if self.frame_index >= len(self.image_frames): self.frame_index = 0
+        self.image = pygame.image.load(self.image_frames[int(self.frame_index)]).convert_alpha()
+    
 
-
-class Coin(AnimatedTile):
+class Coin(Animation):
     def __init__(self, tile_size, x, y, path):
         super().__init__(tile_size, x, y, path)
-        self.center_x = x + int(tile_size / 2)
-        self.center_y = y + int(tile_size / 2)
-        self.rect = self.image.get_rect(center=(self.center_x, self.center_y))
+        self.image_pos_x = x + tile_size / 2
+        self.image_pos_y = y + tile_size / 2
+        self.rect = self.image.get_rect(center=(self.image_pos_x, self.image_pos_y))
+        
 
-
-class Plam(AnimatedTile):
-    def __init__(self, tile_size, x, y, path, offset_y):
+class Tree(Animation):
+    def __init__(self, tile_size, x, y, path):
         super().__init__(tile_size, x, y, path)
-        offset_y = y - offset_y
-        self.rect.topleft = (x, offset_y)
+        offset_y = y - (tile_size / 2)
+        self.rect = self.image.get_rect(topleft=(x, offset_y))

@@ -1,111 +1,79 @@
 import pygame
-from utils import import_csv_file, import_cut_graphic
 from settings import tile_size
-from tile import StaticTile, Crate, Coin, Plam
-from enemies import Enemies
+from utils import import_csv_file, import_cut_graphic
+from tile import StaticTile, Coin, Tree
 
 
 class Level():
     def __init__(self, level_data, surface):
         self.display_surface = surface
-        self.shift_world = -2
+        self.shift_world = 0
 
-        # terrain setup
-        terrain_layout = import_csv_file(level_data['terrain'])
-        self.terrain_sprite = self.create_tile_group(terrain_layout, 'terrain')
+        # tiles
+        tiles_layout = import_csv_file(level_data["terrain"])
+        self.tile_sprite_list = import_cut_graphic('../public/graphics/terrain/terrain_tiles.png', tile_size)
+        self.tiles_sprite_layout = self.create_sprite_group(tiles_layout, "terrain")
 
-        # grass setup
-        grass_layout = import_csv_file(level_data['grass'])
-        self.grass_sprite = self.create_tile_group(grass_layout, 'grass')
+        # grass
+        grass_layout = import_csv_file(level_data["grass"])
+        self.grass_sprite_list = import_cut_graphic('../public/graphics/decoration/grass/grass.png', tile_size)
+        self.grass_sprite_layout = self.create_sprite_group(grass_layout, 'grass')
 
-        # crate setup
-        crate_layout = import_csv_file(level_data['crates'])
-        self.crate_sprite = self.create_tile_group(crate_layout, 'crates')
+        # coins
+        coin_layout = import_csv_file(level_data["coins"])
+        self.coin_sprite_layout = self.create_sprite_group(coin_layout, 'coins')
+        
+        # trees
+        tree_layout = import_csv_file(level_data["fg palms"])
+        self.tree_sprite_layout = self.create_sprite_group(tree_layout, 'tree')
 
-        # coins setup
-        coin_layout = import_csv_file(level_data['coins'])
-        self.coin_sprite = self.create_tile_group(coin_layout, 'coins')
-
-        # palms tress setup
-        fg_palm_tree_layout = import_csv_file(level_data['fg palms'])
-        self.fg_palm_tree_sprite = self.create_tile_group(
-            fg_palm_tree_layout, 'fg palms')
-
-        # anemies
-        enemies_layout = import_csv_file(level_data["enemies"])
-        self.enemies_sprite = self.create_tile_group(enemies_layout, 'enemies')
-
-    def create_tile_group(self, layout, type):
-        # create a sprite group
+    def create_sprite_group(self, layout, type):
         sprite_group = pygame.sprite.Group()
 
         for row_index, row in enumerate(layout):
             for column_index, value in enumerate(row):
                 if value != '-1':
+                    # get the x and y coordinates of the column.
                     x = column_index * tile_size
                     y = row_index * tile_size
 
                     if type == 'terrain':
-                        terrain_tile_list = import_cut_graphic(
-                            '../public/graphics/terrain/terrain_tiles.png')
-                        single_tile = terrain_tile_list[int(value)]
-                        sprite = StaticTile(tile_size, x, y, single_tile)
+                        single_sprite = self.tile_sprite_list[int(value)]
+                        tile = StaticTile(tile_size, x, y, single_sprite)
+                        sprite_group.add(tile)
+
 
                     if type == 'grass':
-                        grass_tile_list = import_cut_graphic(
-                            '../public/graphics/decoration/grass/grass.png')
-                        single_tile = grass_tile_list[int(value)]
-                        sprite = StaticTile(tile_size, x, y, single_tile)
+                        single_sprite = self.grass_sprite_list[int(value)]
+                        grass = StaticTile(tile_size, x, y, single_sprite)
+                        sprite_group.add(grass)
 
-                    if type == 'crates':
-                        sprite = Crate(tile_size, x, y)
 
                     if type == 'coins':
-                        path = '../public/graphics/coins/'
-                        if value == '0':
-                            path += '/gold'
-                        else:
-                            path += '/silver'
-                        sprite = Coin(
-                            tile_size, x, y, path)
-
-                    if type == 'fg palms':
-                        if value == '0':
-                            sprite = Plam(tile_size, x, y,
-                                          '../public/graphics/terrain/palm_small', 38)
-                        else:
-                            sprite = Plam(tile_size, x, y,
-                                          '../public/graphics/terrain/palm_large', 64)
-
-                    if type == 'enemies':
-                        sprite = Enemies(
-                            tile_size, x, y, '../public/graphics/enemy/run')
-
-                    sprite_group.add(sprite)
+                        coin_sprite = Coin(tile_size, x, y, '../public/graphics/coins/gold' if value == '0' else "../public/graphics/coins/silver")
+                        sprite_group.add(coin_sprite)
+                        
+                    
+                    if type == 'tree':
+                        tree_sprite = Tree(tile_size, x, y, '../public/graphics/terrain/palm_small')
+                        sprite_group.add(tree_sprite)
 
         return sprite_group
 
     def run(self):
-        # terrain
-        self.terrain_sprite.draw(self.display_surface)
-        self.terrain_sprite.update(self.shift_world)
 
-        # crate
-        self.crate_sprite.draw(self.display_surface)
-        self.crate_sprite.update(self.shift_world)
+        # tile
+        self.tiles_sprite_layout.draw(self.display_surface)
+        self.tiles_sprite_layout.update(self.shift_world)
 
         # grass
-        self.grass_sprite.draw(self.display_surface)
-        self.grass_sprite.update(self.shift_world)
-
+        self.grass_sprite_layout.draw(self.display_surface)
+        self.grass_sprite_layout.update(self.shift_world)
+        
         # coins
-        self.coin_sprite.draw(self.display_surface)
-        self.coin_sprite.update(self.shift_world)
-
-        # enemies
-        self.enemies_sprite.draw(self.display_surface)
-        self.enemies_sprite.update(self.shift_world)
-
-        # plam trees
-        self.fg_palm_tree_sprite.draw(self.display_surface)
-        self.fg_palm_tree_sprite.update(self.shift_world)
+        self.coin_sprite_layout.draw(self.display_surface)
+        self.coin_sprite_layout.update(self.shift_world)
+        
+        # trees
+        self.tree_sprite_layout.draw(self.display_surface)
+        self.tree_sprite_layout.update(self.shift_world)
