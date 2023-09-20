@@ -8,7 +8,7 @@ from enemies import Enemies
 class Level():
     def __init__(self, level_data, surface):
         self.display_surface = surface
-        self.shift_world = 0
+        self.shift_world = -2
 
         # terrain setup
         terrain_layout = import_csv_file(level_data['terrain'])
