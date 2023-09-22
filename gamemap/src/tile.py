@@ -16,6 +16,13 @@ class StaticTile(Tile):
     def __init__(self, tile_size, x, y, surface):
         super().__init__(tile_size, x, y)
         self.image = surface
+        
+        
+class Crate(StaticTile):
+    def __init__(self, tile_size, x, y, surface):
+        super().__init__(tile_size, x, y, pygame.image.load(surface).convert_alpha())
+        offset_y = y + tile_size
+        self.rect = self.image.get_rect(bottomleft=(x, offset_y))
 
 
 class Animation(Tile):
