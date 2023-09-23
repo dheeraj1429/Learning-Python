@@ -35,7 +35,6 @@ class Level():
         # crates
         crates_layout = import_csv_file(level_data["crates"])
         self.crate_sprite_layout = self.create_sprite_group(crates_layout, 'crates')
-        
 
     def create_sprite_group(self, layout, type):
         sprite_group = pygame.sprite.Group()
@@ -87,7 +86,6 @@ class Level():
     def vertical_movement_collision(self):
         player = self.player.sprite
         player.apply_gravity()
-        
 
     def run(self):
 
