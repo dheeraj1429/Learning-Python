@@ -84,6 +84,10 @@ class Level():
                     sprite = Player(x, y, self.display_surface)
                     self.player.add(sprite)
                     
+    def vertical_movement_collision(self):
+        player = self.player.sprite
+        player.apply_gravity()
+        
 
     def run(self):
 
@@ -109,4 +113,5 @@ class Level():
         
         # player
         self.player.draw(self.display_surface)
+        self.vertical_movement_collision()
         self.player.update()
