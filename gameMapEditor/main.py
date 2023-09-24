@@ -15,6 +15,7 @@ class Main:
         self.drawer_row = 0
         self.drawer_column = 0
         self.menu_buttons = self.load_menu_buttons(self.menu_images)
+        self.current_menu_item = 0
         
     def load_menu_buttons(self, menu_images):
         menu_button_list = []
@@ -49,7 +50,8 @@ class Main:
             
     def draw_menu(self):
         for button in range(len(self.menu_buttons)):
-            self.menu_buttons[button].draw(self.screen)
+            if self.menu_buttons[button].draw(self.screen):
+                self.current_menu_item = button
             
     def run(self):
         while True:
@@ -74,12 +76,13 @@ class Main:
                 self.scroll -= 5
             elif self.scroll_right and self.scroll < self.bg_image.get_width() * 4:
                 self.scroll += 5
-                    
+            
             self.screen.fill('white')
             self.draw_background()
             self.draw_grid()
             self.drawer()
             self.draw_menu()
+            pygame.draw.rect(self.screen, BLACK, self.menu_buttons[self.current_menu_item].rect, 2)
             pygame.display.update()
     
 if __name__ == '__main__':
