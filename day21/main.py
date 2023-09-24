@@ -69,6 +69,7 @@ for image in range(len(tile_list)):
         
 # world coordinates data
 world_data = []
+
 for row in range(ROWS):
     row_list = [-1] * MAX_COLS
     world_data.append(row_list)
