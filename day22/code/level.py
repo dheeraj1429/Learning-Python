@@ -2,9 +2,11 @@ import pygame
 from settings import *
 from player import Player
 
+
 class Level:
     def __init__(self):
         # display surface
+        self.player = None
         self.display_surface = pygame.display.get_surface()
         
         # sprite group

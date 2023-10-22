@@ -1,0 +1,11 @@
+# testing
+test_rect = pygame.Rect(100, 200, 100, 200)
+ship_reversed_surf = pygame.transform.flip(ship_surface, False, True)
+ship_scaled_surf = pygame.transform.scale(ship_surface, size=(10,10))
+ship_rotated_surf = pygame.transform.rotate(ship_surface, 40)
+
+# draw the rect
+    pygame.draw.rect(display_surface, 'red', test_rect, width=5, border_radius=4)
+    pygame.draw.lines(display_surface, 'green', False, [(0, 0), (100, 200), (100, 100)], width=1)
+    display_surface.blit(ship_scaled_surf, ship_rect)
+    display_surface.blit(ship_rotated_surf, ship_rect)
