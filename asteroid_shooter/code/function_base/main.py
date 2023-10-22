@@ -36,11 +36,11 @@ laser_list = []
 
 # sounds
 laser_sound = pygame.mixer.Sound('../sounds/laser.ogg')
-laser_sound.set_volume(.1)
+laser_sound.set_volume(.3)
 explosion_sound = pygame.mixer.Sound('../sounds/explosion.wav')
-explosion_sound.set_volume(.04)
+explosion_sound.set_volume(.08)
 game_sound = pygame.mixer.Sound('../sounds/music.wav')
-game_sound.set_volume(0.02)
+game_sound.set_volume(0.2)
 game_sound.play()
 
 meteor_timer = pygame.event.custom_type()
