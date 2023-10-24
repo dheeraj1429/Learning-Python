@@ -13,7 +13,7 @@ class Car(pygame.sprite.Sprite):
 
         # float base movement
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 300
+        self.speed = 200
 
         if initial_position[0] < 200:
             self.direction = pygame.math.Vector2(1, 0)
@@ -35,5 +35,5 @@ class Car(pygame.sprite.Sprite):
     def update(self, dt):
         self.move(dt)
 
-        if not -200 < self.rect.x < WINDOW_WIDTH + 100:
+        if not -200 < self.rect.x < 3600:
             self.kill()

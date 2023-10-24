@@ -4,9 +4,10 @@ from utils.utils import import_folders
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, initial_position, groups):
+    def __init__(self, initial_position, groups, collision_group):
         super().__init__(groups)
         self.initial_position = initial_position
+        self.collision_sprites = collision_group
 
         # animation list
         self.animations = {}
@@ -20,6 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.pos = pygame.math.Vector2(self.rect.center)
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = 200
+
+    def collision(self):
+        pygame.sprite.spritecollide(self, self.collision_sprites, True)
 
     def import_assets(self):
         for (index, folder) in enumerate(walk('../graphics/player')):
@@ -78,3 +82,4 @@ class Player(pygame.sprite.Sprite):
     def update(self, dt):
         self.input(dt)
         self.move(dt)
+        self.collision()
