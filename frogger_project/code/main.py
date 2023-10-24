@@ -36,10 +36,9 @@ class AllSprites(pygame.sprite.Group):
 
 # sprite groups
 all_sprite_groups = AllSprites()
-obstacle_sprite = pygame.sprite.Group()
 
 # objects initialization
-player = Player((2062, 3247), all_sprite_groups, obstacle_sprite)
+player = Player((2062, 3247), all_sprite_groups)
 
 # timers
 car_timer = pygame.event.custom_type()
@@ -55,7 +54,7 @@ def create_obstacles(obstacle, path):
     for (file_name, position_list) in obstacle.items():
         obstacle_surface = pygame.image.load(f'{path}/{file_name}.png').convert_alpha()
         for position in position_list:
-            Obstacle(surface=obstacle_surface, initial_position=position, groups=[all_sprite_groups, obstacle_sprite])
+            Obstacle(surface=obstacle_surface, initial_position=position, groups=[all_sprite_groups])
 
 
 create_obstacles(SIMPLE_OBJECTS, simple_obstacle_path)
