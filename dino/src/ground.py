@@ -9,8 +9,11 @@ class Ground(pygame.sprite.Sprite):
         self.initial_position = initial_position
         self.rect = self.image.get_rect(topleft=(self.initial_position))
         self.move_speed = 300
+        self.offset = self.rect.x
+        self.can_move = False
 
     def update(self, dt):
-        self.rect.x -= self.move_speed * dt
-        if self.rect.x < -(GROUND_WIDTH + 300):
-            self.kill()
+        if self.can_move:
+            self.rect.x -= self.move_speed * dt
+            if self.rect.x < -(GROUND_WIDTH + 300):
+                self.kill()
