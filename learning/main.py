@@ -1,8 +1,9 @@
-from string import ascii_lowercase
 import pandas as pd
-import math
-import sympy
-from sympy import symbols, diff, integrate, limit, factor, expand, oo, Eq, solve, dsolve, simplify
+import numpy as np
+# from string import ascii_lowercase
+# import math
+# import sympy
+# from sympy import symbols, diff, integrate, limit, factor, expand, oo, Eq, solve, dsolve, simplify
 
 # students = ['Andrew', 'John', 'Mark']
 # age = [20, 10, 20, 30,]
@@ -121,8 +122,8 @@ from sympy import symbols, diff, integrate, limit, factor, expand, oo, Eq, solve
 # Solve the equation sec^2(x) - 2 = 0 for x.
 # Calculate the definite integral of the function f(x) = sin(x) from 0 to pi.
 
-x = symbols('x')
-y = symbols('y')
+# x = symbols('x')
+# y = symbols('y')
 
 # expression = sympy.sin(x) + sympy.cos(x)
 # print(solve(expression))
@@ -218,3 +219,284 @@ y = symbols('y')
 # eq1 = sympy.sin(x)
 # expression = integrate(eq1, (x, 0, sympy.pi))
 # print(expression)
+
+# ----------------------------------------------------------------
+
+# Find the derivative of the function f(x) = cos(2x) + 3sin(3x).
+# Solve the equation tan(x) = sin(x) for x.
+# Calculate the integral of the function g(x) = 2cos(x) - 4sin(2x).
+# Find the limit of the expression (1 - cos(x))/x as x approaches 0.
+# Determine the values of x for which the equation sin(2x) = 0 is satisfied.
+
+# x = symbols('x')
+# y = symbols('y')
+
+# fn = sympy.sin(2*x) + 3*sympy.cos(3*x)
+# print(fn)
+# answer = diff(fn)
+# print(answer)
+
+# equation = Eq(sympy.tan(x), sympy.sin(x))
+# print(solve(equation))
+
+# expression1 = sympy.cos(x)
+# fn = (1 - expression1) / x
+# # print(fn)
+# # print(limit(fn, x, 0))
+# lm1 = limit(expression1, x, 0)
+# fnNew = 1 - limit(expression1, x, 0) / 0
+# diff1 = diff(1 - expression1, x)
+# diff2 = diff(x)
+# fnNew = diff1 / diff2
+# lm2 = limit(fnNew, x, 0)
+# ----------------------------------------------------------------
+
+# students = ['Andrew', 'John', 'Mark']
+# age = [20, 10, 20, 30,]
+# mixed = [True, 'John', {"name": "Mark", "age": 20}]
+# some_dict = {0: "students", 1: "students", 2: "students"}
+# a_dict = pd.Series(some_dict)
+# b_dict = pd.Series(some_dict)
+
+# x = pd.Series({f"data_{item}": item for item in range(10)})
+# x = pd.Series(data=list(range(10)), index=map(lambda item: 'data_' + str(item), range(10)))
+# x = a_dict.add_prefix('data_')
+# print(x['data_0':'data_1'])
+# print(x['data_0'])
+# print(x.data_1)
+# print(a_dict[[True, False, True]])
+# print(a_dict.loc[[True if i % 2 == 0 else False for i in range(3)]])
+
+
+# loc => location => indexing by labels, Labels based data selecting method
+# iloc => integer loc => indexing by positions, if we are using iloc the last index value is not observer.
+# last index value.
+
+# print(a_dict.iloc[0])
+# print(a_dict.iloc[0:3])
+
+# print(a_dict.iloc[[0, 1, 2]])
+# print(x)
+# print('----')
+# print(x.loc[lambda item: ['data_2', 'data_3']])
+# print(x.loc[lambda item: [True for i in range(x.size)]])
+
+# Indexing with callables -> A callable is just an object which is accepts some arguments and
+# possibly returns something. Classes in python technically callables, but possibly the simplest
+# example and the best example is function.
+
+# print(x.loc[lambda item: ['data_0', 'data_1', 'data_2']])
+# print(x.loc[lambda item: [True for i in range(x.size)]])
+# print(x.loc[lambda item: [True if item % 5 == 0 else False for item in range(x.size)]])
+# print(x[lambda item: [True if item % 5 == 0 else False for item in range(x.size)]])
+
+# def everyFifthItem(x):
+#     return [True if item % 5 == 0 else False for item in range(x.size)]
+
+# print(x.loc[everyFifthItem])
+
+# print(x.get('data_1'))
+# print(x.get('data_2'))
+# print(x.get('data_4'))
+# print(x.get('data_10', default=None))
+
+# a = [item**2 for item in range(100)]
+# b = pd.Series(a)
+# c = b.tail(3)
+# d = b.iloc[-3:]
+# print(pd.Series.equals(d, c))
+
+# ----------------------------------------------------------------
+# file = pd.read_csv("./SampleCSVFile_556kb.csv",)
+# file = pd.read_csv("./SampleCSVFile_556kb.csv", usecols=['country', 'total_litres_of_pure_alcohol'])
+# file = pd.read_csv("./SampleCSVFile_556kb.csv", usecols=['country', 'total_litres_of_pure_alcohol'], index_col='country')
+# file = pd.read_csv("./SampleCSVFile_556kb.csv", usecols=['country', 'total_litres_of_pure_alcohol'], index_col='country')
+# newFile = file.squeeze('columns')  # convert dataFrame to series
+# print(file.head())
+# print(file.tail())
+# print(type(file))
+# print(file.size)
+# print(file.values)
+# print(file.index)
+# print(file.shape)
+# print(len(file))
+
+# print(newFile.is_unique)
+# print(type(newFile))
+# print(newFile.head(10).is_unique)
+# print(newFile.head(5).is_unique)
+# print(newFile.head(5).nunique())
+# print(newFile.nunique())
+# print(newFile.nunique(dropna=False)) # Series.nunique(dropna=True) -> Excludes NA values by default. Don’t include NaN in the count.
+
+# print(pd.Series([1, 2, 3]).is_monotonic_increasing)
+# print(pd.Series([1, 2, 3]).is_monotonic_decreasing)
+# print(pd.Series([1, 2, 3, 3, 3, 3, 3, 3, 3]).is_monotonic_increasing)
+# print(pd.Series([3, 2, 1, 3, 4, 1]).is_monotonic_decreasing)
+
+# print(pd.Series(reversed([1, 2, 3, 4, 5, 6, 7])).is_monotonic_decreasing)
+# print(newFile.size) # return the size of the pandas series
+# print(newFile.count()) # return the number of not null items in pandas series
+# print(newFile.hasnans) # return true and false if series has nan items or null items.
+
+# print(newFile.isnull())
+# print(newFile[newFile.isnull()]) # return all the null values
+# print(newFile[newFile.isnull()].values)
+# print(newFile[newFile.isnull()].index)
+# nan_values_list = list(newFile[newFile.isnull()].index)
+# print(newFile[nan_values_list])
+
+# print(newFile[newFile.isnull()].size)
+# print(len(list(newFile[newFile.isnull()].index)))
+# print(newFile.isnull().sum()) # return the sum of the all True values.
+
+# all = newFile.size  # return the size of the series
+# non_nulls = newFile.count()  # return the count of not null values
+# nulls = newFile.isnull().sum()  # return the sum of all null values
+# print(all == non_nulls + nulls)
+
+# ----------------------------------------------------------------
+
+# ser = pd.Series(data=[True, False, None, 2], dtype=float)
+# print(np.isnan(ser))
+# print(ser.isnull())
+# print(newFile[newFile.isnull()].size)
+# print(newFile[np.isnan].size)
+
+# not null values
+# print(newFile[newFile.notnull()])
+# print(newFile.notnull())
+# print(newFile.isnull())
+# print(newFile.notnull().sum() + newFile.isnull().sum() == newFile.size)
+
+# wine_serving = newFile[newFile.notnull()]
+# print(wine_serving[wine_serving > 10])
+# print(newFile.dropna())
+# print(newFile.dropna(inplace=True)) # change the existing variable value.
+# print(newFile)
+
+# print(newFile.fillna(100, inplace=False))
+# newFile.fillna(100, inplace=True)
+# print(newFile)
+
+# print(newFile.sum())
+# print(newFile.count())
+# print(newFile.sum() / newFile.count())
+# print(newFile.mean())
+
+# Descriptive analysis -> It's a branch of mathematical dealing with the collection, analysis, interpretation ane
+# presentation of masses of numerical data.
+# Descriptive statistics are used to describe / summarize the large data in the way that are meaningful and useful
+
+# marks = np.random.random(50) * 100
+# marks_series = pd.Series(marks)
+# print(marks_series.describe())
+# print(marks_series.max())
+# print(marks_series.min())
+# print(marks_series.count())
+# print(marks_series.dtype)
+
+# n1 = np.random.random(5) * 100
+# n2 = np.random.random(5) * 100
+# n3 = np.random.random(5) * 100
+# n4 = np.random.random(5) * 100
+
+# df = pd.DataFrame({'A': n1, 'B': n2, "C": n3, "D": n4})
+# print(df.max())  # return the max values from every column
+# print(df.max('index'))
+# print(df)
+# print(df.max('columns'))  # return the max values from every column
+
+# print(df.count())
+# print(df.count(axis='columns'))
+# print(df.count(axis='index'))
+# print(df.count(axis='columns', numeric_only=True)) # if numeric_only is true, then only float, int and bool values are returned
+# print(df.count(axis='columns', numeric_only=False))
+
+# print(df.sum())
+# print(df.sum(axis='columns'))
+# print(df.sum(axis='index'))
+# print(df.sum(axis='columns', numeric_only=True))
+# print(df.sum(axis='columns', numeric_only=False))
+
+# mean => Average
+# print(1 + 2 + 2 - 1 / 4)
+# print(df.mean(axis='index'))
+# print(df.mean(axis='columns'))
+
+# median => Return the middle of the values
+# print(df.median(axis='index'))
+# print(df.median(axis='columns'))
+# j = pd.Series([1, 2, 3, 4])
+# print(j.median())
+
+# mode => most repetitive values
+# j = pd.Series([1, 2, 3, 4, 4])
+# print(j.mode())
+# print(df.mode(axis='index'))
+# print(df.mode(axis='columns'))
+
+# df_new = pd.DataFrame({"A": [1, 2, 2, 4], "B": [4, 4, 6, 1], "C": [1, 1, 3, 4]})
+# print(df_new.mode(axis='columns'))
+# print(df_new.mode(axis='index'))
+
+# Quantiles - In terms of statistics, Median is a quantile because it splits the data into the equal proportion.
+# Quantiles - In statistics and probability quantiles are cut points dividing the range of a probability distribution into
+# continuous intervals with equal probabilities, or dividing the observations in a sample in the same way.
+# The 2 quantiles are called the median
+# The 3 quantiles are called the terciles
+# The 4 quantiles are called the quartiles
+# The 5 quantiles are called the quintiles
+# the 10 quantiles are called the deciles
+# the 100 quantiles are called the percentiles
+
+# quantile(q=0.5, axis='index')
+# q = float or array-like, default 0.5 (50%). 0 < q < 1
+
+# print(df)
+# print(df.quantile(q=0.25, axis='columns'))
+# print(df)
+# print(df.quantile(q=[0.25, 0.5], axis='columns'))
+# print(df.quantile(axis='columns'))
+# print(df.median(axis='columns'))
+
+# l = [20, 25, 30, 50, 23, 60, 100]
+# s = pd.Series(l)
+# print(s.quantile(q=0.20))  # 20% students marks 24 less.
+
+
+# ----------------------------------------------------------------
+
+# Standard deviation calculate the difference between actual values and average values for given observations. The larger
+# the difference is higher is the standard  deviation.
+
+# 8, 4, 6, 10, 4, 2, 14 -> 48 / 7 => 6.85
+# x - bar_x -> 8 - 6.85 -> 1.15, for all items.
+# (x - bar_x)^2 => 1.15^2 -> 1.32 for all items.
+# sqrt((x - bar_x)^2 / x - 1)  -> 102.84 / 6 => 4.14
+
+# df = pd.DataFrame([8, 4, 6, 10, 4, 2, 14])
+# print(df.std())
+# print(df_new.std(axis='columns'))
+# print(df_new['A'].std())
+
+# print(df_new.sum(axis='columns'))
+# print(df_new.count())
+
+# ar = np.array([12, 23, 34, 33, 21, 10, 45])
+# df = pd.Series(ar)
+# print(df.mean())
+# print(df.var())  # 159.61904761904762
+# print(df.mean()) # 25.428571428571427
+# y = (ar - df.mean())**2
+# print(y.sum() / 6)
+# print(df_new.describe())
+
+# df = pd.DataFrame({"Mp": [40, 54, 32, 48], "Up": [58, 50, 69, 59], "Ap": [38, 34, 27, 36], "Pb": [42, 47, 55, 61], "hr": [27, 38, 20, 52]})
+# print(df.sum(axis='columns'))
+# print(df)
+# print(df['Pb'].mean())
+# print(df)
+# print(df.describe())
+# print(df.max(axis='columns'))
+# print(df['Pb'].min())
