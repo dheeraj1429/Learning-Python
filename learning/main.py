@@ -500,3 +500,85 @@ import numpy as np
 # print(df.describe())
 # print(df.max(axis='columns'))
 # print(df['Pb'].min())
+
+# ----------------------------------------------------------------
+
+# df = pd.DataFrame({"cname": ["ram", "ram", "ram", "joe", "joe", "Kar"],
+#                    "iname": ["soap", "soap", "soap", "slat", "salt", "soap"],
+#                    "rate": [100, 200, 100, 80, 45, 40]
+#                    })
+
+# print(df)
+# print(df.pivot_table(index='cname', columns='iname', values='rate', aggfunc='mean'))
+# print(df.pivot_table(index='cname', columns='iname', values='rate', aggfunc='mean').fillna(0))
+
+df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['country', 'total_litres_of_pure_alcohol'], index_col='country')
+new_df = df.squeeze('columns')
+# print(df.sum(numeric_only=True))
+# print(df.sum() / df.count())
+# print(df.mean())
+# print(df.median())
+# print(df.quantile(q=.5))
+# print(df.quantile(.5))
+# print(df.quantile(0.75) - df.quantile(0.25))
+# print(new_df)
+# print(new_df.max())
+# print(new_df[new_df == new_df.max()].index[0])
+# print(new_df.idxmax())
+# print(new_df.idxmin())
+# print(new_df.value_counts()) # get the values count.
+# print(new_df[new_df.idxmax()])
+
+# sorting.
+# print(df.dropna(inplace=False))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=True))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=False))
+# print(df.dropna(inplace=False).sort_values(by='total_litres_of_pure_alcohol', ascending=False))
+# print(df.dropna(inplace=False).sort_values(by='total_litres_of_pure_alcohol', ascending=True))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=False, na_position='first'))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=False, na_position='last'))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=False, na_position='last', inplace=True))
+# print(df)
+
+# print(new_df.min())
+# print(new_df.max())
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=True)[:10])
+# print(new_df.sort_values(ascending=True, na_position='last')[:10])
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=True).nsmallest(columns='total_litres_of_pure_alcohol', n=20))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=True).nsmallest(columns='total_litres_of_pure_alcohol', n=10))
+# print(df.sort_values(by='total_litres_of_pure_alcohol', ascending=True).nsmallest(columns='total_litres_of_pure_alcohol', n=29))
+# print(df.nsmallest(columns='total_litres_of_pure_alcohol', n=29))
+
+# sort by index
+# print(new_df.head(10))
+# print(new_df.sort_index())
+# print(df.sort_index(ascending=True))
+# print(df.sort_index(ascending=False))
+# print(df.index.isnull().sum())
+
+# x = new_df[new_df < 50]
+# print(x.sort_values()[:20])
+# y = x.nsmallest(n=20)
+# print(y.mean())
+# print(y.median())
+# print(y.std())
+# print(y.describe())
+
+# print(df.fillna(10))
+# print(df * 2)
+
+# x = pd.Series({"am": 2, "Am": 2})
+# new_df.sort_index(inplace=True)
+# x + new_df
+# print(new_df + x)
+# print(new_df + x)
+# print(new_df.add(x, fill_value=0))
+# print(new_df.divide(x, fill_value=1))
+# print(new_df.multiply(x, fill_value=1))
+# print(new_df.std())
+print(((new_df.subtract(new_df.mean())**2).sum() / new_df.count() - 1)**(1/2))
+
+# print('total', new_df.size)
+# print('nut null', new_df.notnull().sum())
+# print(new_df.isnull().sum())
+# print(new_df.count() + new_df.isnull().sum())
