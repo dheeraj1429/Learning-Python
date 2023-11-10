@@ -512,8 +512,8 @@ import numpy as np
 # print(df.pivot_table(index='cname', columns='iname', values='rate', aggfunc='mean'))
 # print(df.pivot_table(index='cname', columns='iname', values='rate', aggfunc='mean').fillna(0))
 
-df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['country', 'total_litres_of_pure_alcohol'], index_col='country')
-new_df = df.squeeze('columns')
+# df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['country', 'total_litres_of_pure_alcohol'], index_col='country')
+# new_df = df.squeeze('columns')
 # print(df.sum(numeric_only=True))
 # print(df.sum() / df.count())
 # print(df.mean())
@@ -576,9 +576,106 @@ new_df = df.squeeze('columns')
 # print(new_df.divide(x, fill_value=1))
 # print(new_df.multiply(x, fill_value=1))
 # print(new_df.std())
-print(((new_df.subtract(new_df.mean())**2).sum() / new_df.count() - 1)**(1/2))
+# print(((new_df.subtract(new_df.mean())**2).sum() / new_df.count() - 1)**(1/2))
 
 # print('total', new_df.size)
 # print('nut null', new_df.notnull().sum())
 # print(new_df.isnull().sum())
 # print(new_df.count() + new_df.isnull().sum())
+
+# print(df.std()) # 3.454136
+# print(((new_df.subtract(new_df.mean())**2).sum() / (new_df.count() - 1))**(1/2))
+# print(new_df.sum())
+# print(new_df.cumsum())
+# print(new_df)
+# print(pd.Series([1, 2, 3]).cumsum())
+# print(new_df.cumsum(skipna=False))
+# print(new_df.cumsum(skipna=True))
+
+# data = [[10, 18, 11], [13, 15, 8], [9, 20, 3]]
+# df = pd.DataFrame(data)
+# print(df)
+# print(df.prod())
+# print(10 * 13 * 9)
+# print(df.prod(axis='index'))
+# print(new_df.prod())
+# print(new_df.cumprod())
+
+# data = [[10, 18, 11], [13, 15, 8], [9, 20, 3]]
+# df = pd.DataFrame(data)
+# print(df)
+# print(df.prod(axis='columns'))
+# print(df.cumprod(axis="columns"))
+
+# print(new_df.diff(periods=1))
+# print(new_df.diff(periods=-1))
+# print('v1', 0.7 - 4.9, 'v2', 12.4 - 0.7, 'v3', 5.9 - 12.4) # periods = 1
+# print('v1', 4.9 - 0.7, 'v2', 0.7 - 12.4, 'v3', 12.4 - 5.9)  # periods = -1
+# for item in new_df.items():
+#     print(item)
+# print(new_df.filter(regex='^V'))
+# print(new_df.filter(like='stan'))
+# print(new_df.filter(like='Af'))
+# print(new_df[lambda item: item > 10])
+# print(df.where(lambda x: x > 10, other='value are two small'))
+# print(df.where(lambda x: x > 10).dropna())
+
+# print(df.mask(lambda x: x > 10).dropna())  # opposite of df.where()
+# df.loc['Afghanistan'] = 20
+# print(df)
+
+# update series
+# new_df.update(pd.Series(data=[200, 100], index=["Afghanistan", 'Bangladesh']))
+# print(new_df.head(30))
+
+# apply
+# print(new_df)
+# print(new_df.apply(lambda x: x + 2))
+# print(new_df + 2)
+# print(new_df.apply(np.square))
+
+# passing the args
+
+
+# def multiply_by_value(item, value):
+#     if item > value:
+#         return item ** 2
+#     return item
+
+
+# we can't use the map function with this approach. instead we can use the the apply function with callable
+# one way to pass the parameters
+# print(new_df.apply(multiply_by_value, value=10))
+# another way to pass the parameters
+# print(new_df.apply(multiply_by_value, args=(10,)))
+
+# print(new_df.map(lambda x: x**2))
+# print(new_df.apply(lambda x: x**2))
+
+
+# ----------------------------------------------------------------
+df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['wine_servings', 'country'], index_col='country')
+series_data = df.squeeze('columns')
+# print(series_data)
+# print(series_data.mean())
+# print(series_data.median())
+# print(series_data.std())
+# print(series_data[:10])
+# print(df.mean())
+# print(df.median())
+# print(df.quantile(0.5))
+# print(df.std())
+# print(df.var()**(1/2))
+# print(np.sqrt(df.var()))
+# print(df.describe())
+# print(df.head(10).diff())
+# print(df[:10] - df.mean())
+# print((series_data[:10] - series_data.mean()).apply(lambda x: 'high' if x > 0 else 'low').value_counts())
+
+# z scores
+# print(((series_data - series_data.mean()) / series_data.std()).head(10))
+# print(((series_data - series_data.mean()) / series_data.std()).max())
+# print(((series_data - series_data.mean()) / series_data.std()).min())
+
+# print(series_data[series_data.idxmax()])
+# print((series_data[series_data.idxmax()] - series_data.mean()) / series_data.std())
