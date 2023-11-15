@@ -2,6 +2,7 @@ const EventEmitter = require("events");
 
 const myEmitter = new EventEmitter();
 
+debugger;
 myEmitter.on("some-events", () => console.log("event function called"));
 myEmitter.on("sale", (args) => {
   console.log(args);

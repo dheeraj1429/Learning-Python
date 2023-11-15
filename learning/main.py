@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import timeit
 # from string import ascii_lowercase
 # import math
 # import sympy
@@ -654,8 +655,8 @@ import numpy as np
 
 
 # ----------------------------------------------------------------
-df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['wine_servings', 'country'], index_col='country')
-series_data = df.squeeze('columns')
+# df = pd.read_csv('./SampleCSVFile_556kb.csv', usecols=['wine_servings', 'country'], index_col='country')
+# series_data = df.squeeze('columns')
 # print(series_data)
 # print(series_data.mean())
 # print(series_data.median())
@@ -679,3 +680,154 @@ series_data = df.squeeze('columns')
 
 # print(series_data[series_data.idxmax()])
 # print((series_data[series_data.idxmax()] - series_data.mean()) / series_data.std())
+
+# ----------------------------------------------------------------
+# names = ["John", "Amo", "Nen", "Hasa"]
+# ages = [20, 30, 21, 40]
+# married = [False, False, True, False]
+
+# ser = pd.Series(names)  # pd.Series always used one dimensional
+# print(ser)
+# print(ser[0])
+# print(ser[ser == 'John'])
+# print(ser.iloc[1])
+# print(ser.ndim)
+# print(ser.shape)
+# print(ser.dtype)
+
+# df = pd.DataFrame({"names": names, "ages": ages, "married": married})  # pd.Series used two dimensional
+# print(df)
+# print(df['names'][1])
+# print(df.iloc[2, 0])
+# print(df.iloc[0])
+# print(df.ndim)
+# print(df.shape)
+# print(df.dtypes)
+
+# more ways to create pandas data frames.
+# tuple_name = tuple(names)
+# tuple_ages = tuple(ages)
+# tuple_married = tuple(married)
+# print(tuple_name, tuple_ages, tuple_married)
+# print(pd.DataFrame({"names": tuple_name, "ages": tuple_ages, "married": tuple_married}))
+# print(pd.DataFrame({"names": pd.Series(tuple_name), "ages": pd.Series(tuple_ages), "married": pd.Series(tuple_married)}))
+
+# dict_names = {key: value for key, value in enumerate(tuple_name)}
+# dict_ages = {key: value for key, value in enumerate(tuple_ages)}
+# dict_married = {key: value for key, value in enumerate(tuple_married)}
+# print(pd.DataFrame({"names": dict_names, "ages": dict_ages, "married": dict_married}))
+
+# print(pd.DataFrame([{"names": name, 'ages': age, "married": married} for name, age, married in zip(tuple_name, tuple_name, tuple_married)]))
+# print(df.info(verbose=False))
+# print(df.info(verbose=True))
+# print(df.info(max_cols=10))
+# print(df.info(memory_usage=True))
+# print(df.info(memory_usage=False))
+# print(df.info(memory_usage='deep'))
+# ----------------------------------------------------------------
+
+# nutrition = pd.read_csv('./nutrition.csv')
+# print(nutrition.info(verbose=False, memory_usage='deep'))
+# print(nutrition.head())
+# print(nutrition['Unnamed: 0'])
+
+# remove columns from the data frame. return new data frame with excluded the columns
+# nutrition_new_df = nutrition.drop('Unnamed: 0', axis='columns')
+# print(nutrition_new_df)
+
+# print(nutrition.set_index('Unnamed: 0'))
+# print(nutrition)
+
+nutrition = pd.read_csv('./nutrition.csv', index_col=[0])
+# print(nutrition.sample())
+# print(nutrition.sample(random_state=12))
+# print(nutrition.sample(n=4))
+
+# print(nutrition.sample(frac=.01))
+# print(nutrition.sample(n=3, replace=True))
+# print(nutrition.axes[0])
+# print(nutrition.axes[1][30])
+# print(nutrition.columns[30])
+
+# print(nutrition.axes[1])
+# nutrition.set_index('name', inplace=True)
+# print(nutrition)
+# print(nutrition.set_index('total_fat', drop=True, append=True));
+# print(nutrition.set_index('total_fat', drop=True, append=True, verify_integrity=False))
+# nutrition.set_index('name', drop=True, verify_integrity=True, inplace=True)
+# print(nutrition.loc['Eggplant, raw'])
+# print(type(nutrition.loc['Eggplant, raw']))
+# print(nutrition.loc['Eggplant, raw']['alcohol'])
+# print(nutrition.loc['Eggplant, raw', 'alcohol'])
+
+#
+# print(nutrition.loc["Eggplant, raw":"Sherbet, orange", "calories":"choline"])
+# print(nutrition.loc[["Eggplant, raw", "Sherbet, orange"], ["calories", "choline"]])
+
+# print(nutrition.loc[[0, 1, 2]])
+# print(nutrition.iloc[[1]])
+
+# print(nutrition.index)
+# print(nutrition.columns)
+
+range_index = pd.RangeIndex(start=0, stop=8789, step=1)
+nutrition.index = range_index
+# print(type(nutrition.index))
+# print(nutrition.set_index('serving_size', drop=False, append=True))
+# print(nutrition.set_index('serving_size', drop=True, append=False, verify_integrity=False))
+nutrition.set_index('name', inplace=True)
+# print(nutrition.loc['Eggplant, raw'])
+# print(nutrition.loc['Eggplant, raw']['total_fat'])
+# print(type(nutrition.loc['Eggplant, raw']))
+
+# print(nutrition.loc[['Eggplant, raw', 'Teff, uncooked'], ['calories', 'choline']])
+# print(type(nutrition.loc[['Eggplant, raw', 'Teff, uncooked']]))
+# print(nutrition.loc[['Eggplant, raw', 'Sherbet, orange']])
+# print(nutrition.loc['Eggplant, raw':'Sherbet, orange', 'calories':'choline'])
+
+# print(nutrition.iloc[3])
+# print(nutrition.iloc[3, :])
+# print(nutrition.iloc[[2, 3, 4], [1, 2, 3]])
+# print(type(nutrition.iloc[[2, 3, 4], 1]))
+# print(type(nutrition.iloc[[2, 3, 4], [1]]))
+# print(nutrition.iloc[[2, 3, 4], 1])
+
+# print(nutrition.loc['Cornstarch', 'calories'])
+# print(nutrition.iloc[0, 1])
+
+# single value extraction
+# print(nutrition.at['Cornstarch', 'calories'])  # label based extraction
+# print(nutrition.iat[0, 1]) # index based extraction
+
+
+# def my_function():
+# print(nutrition.loc['Cornstarch', 'calories'])
+# print(nutrition.at['Cornstarch', 'calories'])
+
+
+# time_taken = timeit.timeit(my_function, number=1000)
+# print(f"Time taken: {time_taken} seconds")
+
+# two ways to get the single value from the data frame.
+# print(nutrition.loc['Eggplant, raw', 'vitamin_k'])
+# print(nutrition.at['Eggplant, raw', 'vitamin_k'])
+
+# get the column index
+# print(nutrition.columns.get_loc('vitamin_k'))
+
+samples = nutrition.sample(n=10, axis=0)
+# print(samples.shape)
+# print(samples)
+# print(samples.loc[:, ['total_fat', 'cholesterol']])
+# b12 = samples.columns.get_loc('vitamin_b12')
+# print(samples.iloc[0:10, b12])
+
+# print(samples.fatty_acids_total_trans.sum())
+# print(samples.fatty_acids_total_trans)
+# print(samples.fatty_acids_total_trans.max())
+
+# replace the values regex, and then convert the data type string to float or int,
+# ndf = samples.fatty_acids_total_trans.replace(to_replace='\smg', value='', regex=True)
+# ndf = ndf.astype(float)
+# print(ndf.sum())
+# print(ndf.max())
