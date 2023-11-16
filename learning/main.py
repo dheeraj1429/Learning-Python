@@ -815,7 +815,7 @@ nutrition.set_index('name', inplace=True)
 # get the column index
 # print(nutrition.columns.get_loc('vitamin_k'))
 
-samples = nutrition.sample(n=10, axis=0)
+# samples = nutrition.sample(n=10, axis=0)
 # print(samples.shape)
 # print(samples)
 # print(samples.loc[:, ['total_fat', 'cholesterol']])
@@ -831,3 +831,27 @@ samples = nutrition.sample(n=10, axis=0)
 # ndf = ndf.astype(float)
 # print(ndf.sum())
 # print(ndf.max())
+
+# rename
+# print(samples.rename(index={'Spices, garlic powder': "new_name"}))
+# print(nutrition.rename(index={'Cornstarch': "new name"}, columns={'serving_size': 'Serving size'}))
+# print(nutrition.add_prefix('_new_', axis=0))
+# print(nutrition.add_prefix('_new_', axis=1))
+
+# using mapper we don't have to power to change the column and index onces.
+# print(nutrition.rename(mapper={'serving_size': 'Serving size (g)'}, axis=1))
+# print(nutrition.rename(mapper={'serving_size': 'Serving size (g)'}, axis=0))
+
+# dropna method drop all the nan values from the given series,
+# print(nutrition.dropna())
+
+
+# print(nutrition.dropna(how='all', axis=0))
+# print(nutrition.dropna(how='any', axis=0))
+# print(nutrition.dropna(axis=0, thresh=2))
+# new_df = nutrition.loc["Cornstarch":"Sherbet, orange", 'serving_size':'saturated_fat']
+# print(new_df.dropna(axis=1))
+# print(new_df.dropna(axis=0, thresh=1))
+
+# only drop nan from the "saturated_fat" column
+# print(new_df.dropna(axis=0, how='any', subset=['saturated_fat']))
